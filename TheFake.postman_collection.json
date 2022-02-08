@@ -1,0 +1,95 @@
+{
+	"info": {
+		"_postman_id": "79cc934d-1f3f-4c44-a002-24bff1dffc26",
+		"name": "TheFake",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/hi",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://8acce7f3-b66c-455d-acfc-f3faec004468.mock.pstmn.io//hi",
+					"protocol": "https",
+					"host": [
+						"8acce7f3-b66c-455d-acfc-f3faec004468",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"",
+						"hi"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}//hi",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"",
+								"hi"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "hello"
+				}
+			]
+		},
+		{
+			"name": "/who",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}//who",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"",
+						"who"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}//who",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"",
+								"who"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "me"
+				}
+			]
+		}
+	]
+}

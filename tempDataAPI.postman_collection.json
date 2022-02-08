@@ -1,0 +1,346 @@
+{
+	"info": {
+		"_postman_id": "ce69e171-db90-4182-b78c-e1f746d293b7",
+		"name": "tempDataAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Joke",
+			"item": [
+				{
+					"name": "Get_A_Joke",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://autumnfish.cn/api/joke",
+							"protocol": "https",
+							"host": [
+								"autumnfish",
+								"cn"
+							],
+							"path": [
+								"api",
+								"joke"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Mul_Jokes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://autumnfish.cn/api/joke/list?num=4",
+							"protocol": "https",
+							"host": [
+								"autumnfish",
+								"cn"
+							],
+							"path": [
+								"api",
+								"joke",
+								"list"
+							],
+							"query": [
+								{
+									"key": "num",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "Account_Ava",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://autumnfish.cn/api/user/check",
+							"protocol": "https",
+							"host": [
+								"autumnfish",
+								"cn"
+							],
+							"path": [
+								"api",
+								"user",
+								"check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Account_register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "test123545222225",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://autumnfish.cn/api/user/register",
+							"protocol": "https",
+							"host": [
+								"autumnfish",
+								"cn"
+							],
+							"path": [
+								"api",
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Account_register_json",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"testhaha111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://autumnfish.cn/api/user/reg",
+							"protocol": "https",
+							"host": [
+								"autumnfish",
+								"cn"
+							],
+							"path": [
+								"api",
+								"user",
+								"reg"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Account_Ava_Invalid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Invalid test\", function() {\r",
+									"    pm.expect(responseBody).to.equal(\"请正确传递参数\")\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://autumnfish.cn/api/user/check?username=test",
+							"protocol": "https",
+							"host": [
+								"autumnfish",
+								"cn"
+							],
+							"path": [
+								"api",
+								"user",
+								"check"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "test"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hero",
+			"item": [
+				{
+					"name": "Get_aliasName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"alias test\", function() {\r",
+									"    pm.expect(responseBody).to.equal(\"迅捷斥候\")\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://autumnfish.cn/api/hero/simple?name=提莫",
+							"protocol": "https",
+							"host": [
+								"autumnfish",
+								"cn"
+							],
+							"path": [
+								"api",
+								"hero",
+								"simple"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "提莫"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_HeroInfo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"information test\", function() {\r",
+									"    var data = JSON.parse(responseBody);\r",
+									"    story = data.story\r",
+									"    pm.expect(story).to.equal(\"Teemo还有个隐藏被动技能，就是长了个全球嘲讽脸。每次团战必然会被敌方坦克和刺客类英雄集火，你的工作就是要用蘑菇风筝每一个攻击你的人，保持活着，有可能的话顺便杀个人。\")\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://autumnfish.cn/api/hero/info?name=提莫",
+							"protocol": "https",
+							"host": [
+								"autumnfish",
+								"cn"
+							],
+							"path": [
+								"api",
+								"hero",
+								"info"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "提莫"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_HeroDetails",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"details test\", function() {\r",
+									"    var data = JSON.parse(responseBody);\r",
+									"    tag = data.tags\r",
+									"    pm.expect(tag[0]).to.equal(\"魔法\")\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://autumnfish.cn/api/hero/detail?name=提莫",
+							"protocol": "https",
+							"host": [
+								"autumnfish",
+								"cn"
+							],
+							"path": [
+								"api",
+								"hero",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "提莫"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
