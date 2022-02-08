@@ -1,0 +1,268 @@
+{
+	"info": {
+		"_postman_id": "76c68104-aaaf-4b6c-96bd-ce05af1a37f2",
+		"name": "testapi_suite",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "github_gettoken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var cheerio = require(\"cheerio\");\r",
+							"var $ = cheerio.load(responseBody);\r",
+							"authenticity_token = $(\"input[name=authenticity_token]\").val();\r",
+							"// console.log(json_data)\r",
+							"postman.setEnvironmentVariable(\"authenticity_token\", authenticity_token);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://github.com/login",
+					"protocol": "https",
+					"host": [
+						"github",
+						"com"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "github_login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest('https://github.com/login', function (err, res) {\r",
+							"    var cheerio = require(\"cheerio\");\r",
+							"    var $ = cheerio.load(res.text());\r",
+							"    var authenticity_token = $(\"input[name=authenticity_token]\").val();\r",
+							"    console.log(authenticity_token)\r",
+							"    postman.setEnvironmentVariable(\"token\", authenticity_token);\r",
+							"    // console.log(res.text())\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "commit",
+							"value": "Sign in",
+							"type": "text"
+						},
+						{
+							"key": "authenticity_token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "login",
+							"value": "jiushiganni999@qq.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "rockwell123@R",
+							"type": "text"
+						},
+						{
+							"key": "webauthn-support",
+							"value": "supported",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://github.com/session",
+					"protocol": "https",
+					"host": [
+						"github",
+						"com"
+					],
+					"path": [
+						"session"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "github_createRepo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest('https://github.com/login', function (err, res) {\r",
+							"    var cheerio = require(\"cheerio\");\r",
+							"    var $ = cheerio.load(res.text());\r",
+							"    var authenticity_token = $(\"input[name=authenticity_token]\").val();\r",
+							"    console.log(authenticity_token)\r",
+							"    postman.setEnvironmentVariable(\"token\", authenticity_token);\r",
+							"    // console.log(res.text())\r",
+							"});\r",
+							"token = pm.environment.get(\"token\");\r",
+							"const loginRequest = {\r",
+							"    url: 'https://github.com/session',\r",
+							"    method: \"POST\",\r",
+							"    body: {\r",
+							"        commit:'Sign in',\r",
+							"        authenticity_token:token,\r",
+							"        login:'jiushiganni999@qq.com',\r",
+							"        password:'rockwell123@R',\r",
+							"        'webauthn-support':'supported'\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"// 发送请求\r",
+							"pm.sendRequest(loginRequest, function (err, res) {\r",
+							"    console.log(err ? err : res.text());\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "authenticity_token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "owner",
+							"value": "forAPItest",
+							"type": "text"
+						},
+						{
+							"key": "repository[name]",
+							"value": "testKLKL",
+							"type": "text"
+						},
+						{
+							"key": "repository[description]",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "repository[visibility]",
+							"value": "public",
+							"type": "text"
+						},
+						{
+							"key": "repository[auto_init]",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "repository[gitignore_template]",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "repository[license_template]",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://github.com/repositories",
+					"protocol": "https",
+					"host": [
+						"github",
+						"com"
+					],
+					"path": [
+						"repositories"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "<Basic Auth Username>",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "<Basic Auth Password>",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:3000",
+			"type": "string"
+		}
+	]
+}
