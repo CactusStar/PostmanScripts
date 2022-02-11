@@ -101,7 +101,7 @@
 						},
 						{
 							"key": "password",
-							"value": "rockwell123@R",
+							"value": "**************",
 							"type": "text"
 						},
 						{
@@ -237,6 +237,22 @@
 					],
 					"path": [
 						"repositories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://github.com",
+					"protocol": "https",
+					"host": [
+						"github",
+						"com"
 					]
 				}
 			},
